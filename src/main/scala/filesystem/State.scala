@@ -4,7 +4,7 @@ import files.Directory
 
 class State(val root: Directory, val wd: Directory, val output: String) {
 
-  def show: Unit = {
+  def show(): Unit = {
     println(output)
     print(State.SHELL_TOKEN)
   }
