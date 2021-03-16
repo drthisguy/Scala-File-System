@@ -1,7 +1,7 @@
 package commands
 
 import filesystem.State
-import main.scala.commands.{Cd, Ls, Mkdir, Pwd, Rm, Touch}
+import main.scala.commands.{Cat, Cd, Echo, Ls, Mkdir, Pwd, Rm, Touch}
 
 trait Command {
 
@@ -26,12 +26,21 @@ object Command {
   val CD = "cd"
   val RM = "rm"
   val ECHO = "echo"
+  val CAT = "cat"
 
   def From(input: String): Command = {
     val tokens: Array[String]= input.split(" ")
 
     if (input.isEmpty || tokens.isEmpty) emptyCommand
-    else if  (MKDIR.equals(tokens(0))) {
+    else tokens(0) match {
+      case MKDIR =>
+        if (tokens.length < 2) incompleteCommand(MKDIR)
+        else  new Mkdir(tokens(1))
+      case LS => new Ls
+      case PWD
+
+    }
+    if  (MKDIR.equals(tokens(0))) {
       if (tokens.length < 2) incompleteCommand(MKDIR)
       else  new Mkdir(tokens(1))
     } else if (LS.equals(tokens(0))) {
@@ -50,6 +59,9 @@ object Command {
     } else if (ECHO.equals(tokens(0))) {
       if (tokens.length < 2) incompleteCommand(ECHO)
       else new Echo(tokens.tail)
-    } else new UnknownCommand
+    } else if (CAT.equals(tokens(0)))
+      if (tokens.length < 2) incompleteCommand(CAT)
+        else new Cat(tokens(1))
+    else new UnknownCommand
   }
 }
