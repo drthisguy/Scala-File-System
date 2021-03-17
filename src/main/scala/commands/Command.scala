@@ -7,13 +7,9 @@ trait Command extends (State => State) {
 }
 
 object Command {
-  def emptyCommand: Command = new Command {
-    override def apply(state: State): State = state
-  }
-  def incompleteCommand(name: String): Command = new Command {
-    override def apply(state: State): State = {
-      state.setMessage(name + ": incomplete command!")
-    }
+  def emptyCommand: Command = (state: State) => state
+  def incompleteCommand(name: String): Command = (state: State) => {
+    state.setMessage(name + ": incomplete command!")
   }
 
   val MKDIR = "mkdir"

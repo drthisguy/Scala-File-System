@@ -44,7 +44,7 @@ class Rm(name: String) extends Command {
     val newRoot: Directory = rmHelper(state.root, tokens)
 
     if (newRoot == state.root)
-      state.setMessage((path + ": no such file or directory"))
+      state.setMessage(path + ": no such file or directory")
     else
       State(newRoot, newRoot.findDescendant(state.wd.path.substring(1)))
   }

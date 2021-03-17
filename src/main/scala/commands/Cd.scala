@@ -3,7 +3,6 @@ package main.scala.commands
 import commands.Command
 import files.{DirEntry, Directory}
 import filesystem.State
-import javax.naming.spi.DirStateFactory.Result
 
 import scala.annotation.tailrec
 
