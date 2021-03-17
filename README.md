@@ -1,6 +1,6 @@
 # Scala-Filesystem
 Linux like command line interface with basic Filesystem operations.
-Use this CLI to preform many of the common command line commands. 
+Use this CLI to preform many of the common command line operations. 
 
 - - - -
 
